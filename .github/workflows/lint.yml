@@ -5,11 +5,14 @@ on:
       - feature/*
       - develop
       - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
 
+    steps:
     - uses: actions/checkout@v3
     - uses: actions/cache@v3
       with:
@@ -18,7 +21,6 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-${{ github.repository }}-phpcsfixer-
 
-    steps:
     - uses: zalexki/php-cs-fixer-action@master
       with:
         other-cmds: '--dry-run --diff'
