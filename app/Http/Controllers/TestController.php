@@ -8,8 +8,6 @@ class TestController extends Controller
     {
         $a = ['test'];
 
-        array_push($a, 'test2')
-
-        ;
+        array_push($a, 'test2');
     }
 }
