@@ -1,0 +1,16 @@
+name: Lint Code
+on:
+  push:
+    branches:
+      - feature/*
+      - develop
+      - master
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: zalexki/php-cs-fixer-action@master
+      with:
+        other-cmds: '--dry-run --diff'
