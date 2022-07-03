@@ -1,4 +1,5 @@
-name: Lint Code
+name: Lint code
+
 on:
   push:
     branches:
@@ -13,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: zalexki/php-cs-fixer-action@master
-      with:
-        other-cmds: '--dry-run --diff --config=/github/workspace/.php-cs-fixer.php'
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+            ref: ${{ github.head_ref }}
+
+      - name: Run PHP CS Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+            args: --config=.php-cs-fixer.php
