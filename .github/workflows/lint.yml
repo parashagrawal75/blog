@@ -1,0 +1,25 @@
+name: Lint code
+
+on:
+  push:
+    branches:
+      - feature/*
+      - develop
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+            ref: ${{ github.head_ref }}
+
+      - name: Run PHP CS Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+            args: --dry-run --diff --config=.php-cs-fixer.php
