@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class TestController extends Controller
 {
-    public function index($value='')
+    public function index($value = '')
     {
-        $a = array('test');
+        $a = ['test'];
 
-
-        array_push($a, 'test2')     ;
-
-
+        array_push($a, 'test2');
     }
 }
